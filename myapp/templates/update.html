@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update task</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
 </head>
 <body>
-    <form method="POST">
-    {% csrf_token %}
+    <div class="container">
+        <h1>Update Task</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="taskname" value="{{ a.taskname }}" required>
+            </div>
 
-    <label>Name:</label>
-    <input type="text" name="taskname" value="{{ a.taskname }}"><br><br>
-    <label>Date:</label>
-    <input type="date" name="taskdate"
-           value="{{ a.taskdate|date:'Y-m-d' }}"><br><br>
-    <button type="submit">Update</button>
-</form>
+            <div class="form-field">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="taskdate" value="{{ a.taskdate|date:'Y-m-d' }}" required>
+            </div>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
 </body>
 </html>
